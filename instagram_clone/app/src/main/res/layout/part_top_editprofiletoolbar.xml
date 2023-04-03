@@ -22,7 +22,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_centerVertical="true"
                 android:id="@+id/backArrow"
-                android:src="@drawable/ic_arrow_back"/>
+                android:src="@drawable/ic_close"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,6 +42,7 @@
                 android:layout_marginEnd="20dp"
                 android:layout_centerVertical="true"
                 android:id="@+id/saveChanges"
+
                 android:layout_alignParentRight="true"
                 android:src="@drawable/ic_checkmark"/>
 

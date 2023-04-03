@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class AccountSetttingsActivity extends AppCompatActivity {
 
     private Context mContext;
-    private SectionsStatePagerAdapter pagerAdapter;
+
     private ViewPager mViewPager;
     private RelativeLayout mRelativeLayout;
     @Override
@@ -28,8 +28,6 @@ public class AccountSetttingsActivity extends AppCompatActivity {
         mContext=getApplicationContext();
         mViewPager=findViewById(R.id.container);
         mRelativeLayout =findViewById(R.id.relativeLayout1);
-        setupSettingsList();
-        setupFragments();
 
         ImageView backArrow= findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
@@ -40,35 +38,6 @@ public class AccountSetttingsActivity extends AppCompatActivity {
         });
     }
 
-    private void setupFragments(){
-        pagerAdapter= new SectionsStatePagerAdapter(getSupportFragmentManager());
-        pagerAdapter.addFragment(new EditProfileFragment(),getString(R.string.edit_profile_fragment));
-        pagerAdapter.addFragment(new SignOutFragment() , getString(R.string.sign_out_fragment));
 
-    }
 
-    private void setmViewPager(int fragmentNumber){
-        mRelativeLayout.setVisibility(View.GONE);
-        mViewPager.setAdapter(pagerAdapter);
-        mViewPager.setCurrentItem(fragmentNumber);
-
-    }
-
-    private void setupSettingsList(){
-        ListView listView= findViewById(R.id.listViewAccountSettings);
-
-        ArrayList<String> options = new ArrayList<>();
-        options.add(getString(R.string.edit_profile_fragment)); //0
-        options.add(getString(R.string.sign_out_fragment)); //1
-
-        ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1,options);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                setmViewPager(position);
-            }
-        });
-    }
 }

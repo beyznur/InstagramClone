@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfileFragment">
+    tools:context=".EditProfileActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/relativeLayout1"
+        android:id="@+id/relativeLayout"
         >
         <include layout="@layout/part_top_editprofiletoolbar"/>
 
@@ -18,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@id/relativeLayout2"
-        android:layout_below="@id/relativeLayout1">
+        android:layout_below="@id/relativeLayout">
+
         <include layout="@layout/part_center_editprofile"/>
 
     </RelativeLayout>
