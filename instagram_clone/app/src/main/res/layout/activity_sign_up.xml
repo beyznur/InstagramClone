@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:layout_marginBottom="60dp"
-    tools:context=".LoginActivity">
+    tools:context=".SignUpActivity">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -29,15 +29,29 @@
                 android:text="Instagram"/>
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/username"
+                android:inputType="textEmailAddress"
                 android:layout_marginTop="40dp"
                 android:paddingLeft="15dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/edittext_login_bg"
                 android:layout_height="50dp"
-                android:inputType="textEmailAddress"
                 android:layout_marginLeft="30dp"
-                android:hint="Phone number, email or username"
+                android:hint="Username"
+                android:layout_marginRight="30dp"
+                />
+
+
+            <EditText
+                android:id="@+id/email"
+                android:inputType="textEmailAddress"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="15dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/edittext_login_bg"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:hint="Email"
                 android:layout_marginRight="30dp"
                 />
 
@@ -54,35 +68,41 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp" />
 
+            <EditText
+                android:id="@+id/confirm_password"
+                android:layout_width="match_parent"
+                android:paddingLeft="15dp"
+                android:inputType="textPassword"
+                android:background="@drawable/edittext_login_bg"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:hint="Confirm password"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="30dp" />
+
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="30dp"
-                android:id="@+id/btnLogin"
-                android:text="Log in"
+                android:id="@+id/btnSignUp"
+                android:text="SIGN UP"
                 android:background="@color/login_button_color"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Forgot your login details? Get help logging in."
-                android:textSize="12sp"
-                android:layout_marginTop="20dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Don't have an account? Sign up"
+                android:text="Have an account? Log in"
                 android:textSize="12sp"
-                android:id="@+id/signUp"
-                android:layout_marginTop="10dp"/>
+                android:id="@+id/signIn"
+                android:layout_marginTop="15dp"/>
 
 
         </LinearLayout>
 
 
 
-</ScrollView>
+    </ScrollView>
 </LinearLayout>

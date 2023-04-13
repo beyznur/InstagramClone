@@ -6,13 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".ShareActivity">
 
-    <RelativeLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_navigation_menu">
-        <include layout="@layout/layout_bottom_navigation_view"/>
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="SHARE"/>
 
 </RelativeLayout>
