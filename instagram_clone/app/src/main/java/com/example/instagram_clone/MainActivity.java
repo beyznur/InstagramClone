@@ -31,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         mBottomBar=findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new HomeFragment()).commit();
+
 
         mBottomBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -66,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if(selectedFragment !=null){
-
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             selectedFragment).commit();
 

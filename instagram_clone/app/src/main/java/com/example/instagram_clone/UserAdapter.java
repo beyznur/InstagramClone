@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.emulators.EmulatedServiceSettings;
-
-import org.w3c.dom.Text;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private Context mContext;
+
     private ArrayList<User> userArrayList;
 
     private FirebaseUser firebaseUser;
@@ -50,6 +52,7 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.username.setText(user.getUserName());
         holder.name.setText(user.getName());
         Glide.with(mContext).load(user.getImageUrl()).into(holder.imageProfile);
+        isFollowing(user.getId(),holder.btnFollow);
 
         if (user.getId().equals(firebaseUser.getUid())){
             holder.btnFollow.setVisibility(View.GONE);
@@ -77,4 +80,32 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         }
     }
+    private void isFollowing(String userid, Button button) {
+
+        CollectionReference referance = FirebaseFirestore.getInstance().collection("Follow")
+                .document(firebaseUser.getUid()).collection("following");
+
+        referance.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful())
+                {
+                    QuerySnapshot document = task.getResult();
+                    System.out.println(document.toString());
+                    if (document.toString().equals(userid))
+                    {
+                        button.setText("following");
+                    }
+                    else{
+                        button.setText("follow");
+                    }
+                }
+
+
+            }
+        });
+
+    }
+
 }
