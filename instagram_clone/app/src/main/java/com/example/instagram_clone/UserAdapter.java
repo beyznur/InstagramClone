@@ -1,6 +1,7 @@
 package com.example.instagram_clone;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,15 +9,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.instagram_clone.Fragment.ProfileFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -58,6 +62,45 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.ViewHolder> {
             holder.btnFollow.setVisibility(View.GONE);
         }
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor= mContext.getSharedPreferences("PREFS",Context.MODE_PRIVATE).edit();
+                editor.putString("profileid", user.getId());
+                editor.apply();
+
+                ((FragmentActivity) mContext).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commit();
+            }
+        });
+
+
+
+        holder.btnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (holder.btnFollow.getText().toString().equals("follow"))
+                {
+                   FirebaseFirestore.getInstance().collection("Follow")
+                           .document(firebaseUser.getUid())
+                           .collection("following").document(user.getId()).set(true);
+
+                    FirebaseFirestore.getInstance().collection("Follow")
+                            .document(user.getId())
+                            .collection("followers").document(firebaseUser.getUid()).set(true);
+                }
+                else
+                {
+                    FirebaseFirestore.getInstance().collection("Follow")
+                            .document(firebaseUser.getUid()).collection("following")
+                            .document(user.getId()).set(true);
+
+                    FirebaseFirestore.getInstance().collection("Follow")
+                            .document(user.getId()).collection("followers")
+                            .document(firebaseUser.getUid()).set(true);
+                }
+            }
+        });
 
     }
 
@@ -83,7 +126,7 @@ public class UserAdapter extends  RecyclerView.Adapter<UserAdapter.ViewHolder> {
     private void isFollowing(String userid, Button button) {
 
         CollectionReference referance = FirebaseFirestore.getInstance().collection("Follow")
-                .document(firebaseUser.getUid()).collection("following");
+                .document(firebaseUser.getUid()).collection("followers");
 
         referance.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
