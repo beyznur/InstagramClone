@@ -1,4 +1,4 @@
-package com.example.instagram_clone;
+package com.example.instagram_clone.Fragment;
 
 public class User {
 
@@ -11,6 +11,8 @@ public class User {
         Bio = bio;
         ImageUrl = imageUrl;
     }
+
+
 
     public User() {
     }

@@ -17,19 +17,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.instagram_clone.R;
-import com.example.instagram_clone.User;
-import com.example.instagram_clone.UserAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import org.checkerframework.checker.units.qual.A;
 
 import java.util.ArrayList;
 
@@ -51,9 +50,10 @@ public class SearchFragment extends Fragment {
         searchBar = view.findViewById(R.id.search_bar);
 
         mUser= new ArrayList<>();
+        readUsers();
+
         userAdapter = new UserAdapter(getContext(),mUser);
         recyclerView.setAdapter(userAdapter);
-        readUsers();
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -76,51 +76,55 @@ public class SearchFragment extends Fragment {
 
     private void searchUsers(String s) {
 
-        CollectionReference referance = (CollectionReference) FirebaseFirestore.getInstance().collection("users")
-                .orderBy("userName")
-                .startAt(s)
-                .endAt(s+"\uf8ff");
+        Query query = FirebaseFirestore.getInstance().collection("users")
+                .whereGreaterThanOrEqualTo("UserName",s)
+                .whereLessThanOrEqualTo("UserName", s+"\uf8ff");
+       query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+           @Override
+           public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                mUser.clear();
+               if (task.isSuccessful()) {
 
-        referance.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful())
-                {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        User user = (User) document.getData();
-                        mUser.add(user);
-                    }
-                      userAdapter.notifyDataSetChanged();
+                   for (QueryDocumentSnapshot document : task.getResult()) {
+                       String bio = (String) document.getData().get("Bio");
+                       String imageUrl = (String) document.getData().get("ImageUrl");
+                       String name = (String) document.getData().get("Name");
+                       String id = (String) document.getData().get("id");
+                       String username = (String) document.getData().get("UserName");
+                       User user =new User(id,username,name,bio,imageUrl);
+                       mUser.add(user);
 
-                }
-                else
-                {
-                    Toast.makeText(SearchFragment.super.getContext(), "basarisiz", Toast.LENGTH_SHORT).show();
-
-                }
-            }
-        });
+                   }
+                   userAdapter.notifyDataSetChanged();
+               }
+           }
+       });
     }
 
-    private void readUsers(){
-        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection("Users");
+    private void readUsers() {
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection("users")
+                ;
         collectionReference.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
 
-                    if (searchBar.getText().toString().equals("")) {
-                        mUser.clear();
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            User user = (User) document.getData();
+
+                            String bio = (String) document.getData().get("Bio");
+                            String imageUrl = (String) document.getData().get("ImageUrl");
+                            String name = (String) document.getData().get("Name");
+                            String id = (String) document.getData().get("id");
+                            String username = (String) document.getData().get("UserName");
+
+                            User user =new User(id,username,name,bio,imageUrl);
                             mUser.add(user);
+
                         }
-                        userAdapter.notifyDataSetChanged();
-
-                    }
-
+                    userAdapter.notifyDataSetChanged();
                 }
             }
         });
+
     }
 }

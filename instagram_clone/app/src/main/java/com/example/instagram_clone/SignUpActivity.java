@@ -96,9 +96,9 @@ public class SignUpActivity extends AppCompatActivity {
                                                             user.put("ImageUrl","https://tr.wikipedia.org/wiki/Instagram");
                                                             user.put("Email",txtEmail);
                                                             user.put("Password",txtPassword);
+                                                            user.put("id",mUser.getUid());
 
                                                             mFireStore.collection("users").document(mUser.getUid())
-                                                                    .collection("userKnowledge").document()
                                                                     .set(user).addOnSuccessListener(SignUpActivity.this, new OnSuccessListener<Void>() {
                                                                         @Override
                                                                         public void onSuccess(Void unused) {
