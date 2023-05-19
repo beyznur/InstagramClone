@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,6 +27,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private TextView signUp;
     private Button btnLogin;
+    private SharedPreferences preferences;
+
+    private SharedPreferences.Editor editor;
+
 
     private void init(){
         mAuth = FirebaseAuth.getInstance();
@@ -33,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         password=findViewById(R.id.password);
         btnLogin=findViewById(R.id.btnLogin);
         signUp=findViewById(R.id.signUp);
+        preferences = getSharedPreferences("GirisBilgi", MODE_PRIVATE);
+        editor = preferences.edit();
 
     }
 
@@ -41,6 +48,15 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         init();
+        String p_email = preferences.getString("email", "");
+        String p_password = preferences.getString("password", "");
+
+        if (!TextUtils.isEmpty(p_email) && !TextUtils.isEmpty(p_password)) {
+
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            finish();
+        }
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +95,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if(task.isSuccessful())
                                 {
+                                    editor.putString("email", txtEmail);
+                                    editor.putString("password", txtPassword);
+                                    editor.apply();
+
 
                                     Toast.makeText(LoginActivity.this, "You have successfully logged in", Toast.LENGTH_SHORT).show();
                                     finish();

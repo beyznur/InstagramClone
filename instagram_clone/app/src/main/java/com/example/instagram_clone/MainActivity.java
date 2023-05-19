@@ -15,7 +15,7 @@ import com.example.instagram_clone.Fragment.HomeFragment;
 import com.example.instagram_clone.Fragment.ProfileFragment;
 import com.example.instagram_clone.Fragment.ReelsFragment;
 import com.example.instagram_clone.Fragment.SearchFragment;
-import com.example.instagram_clone.Fragment.ShareFragment;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
