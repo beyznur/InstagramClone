@@ -12,8 +12,6 @@ public class User {
         ImageUrl = imageUrl;
     }
 
-
-
     public User() {
     }
 

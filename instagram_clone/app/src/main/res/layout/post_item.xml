@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/profile_photo"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/ic_circle"
+        android:layout_centerHorizontal="true"
+        app:civ_border_color="@color/black"
+        app:civ_border_width="2dp"/>
+
+    <TextView
+        android:id="@+id/post_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:textStyle="bold"
+        android:hint="username"
+        android:textSize="16sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="550dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:src="@drawable/ic_launcher_background" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!-- Beğeni ikonu -->
+        <ImageButton
+            android:id="@+id/button_like"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:src="@drawable/favorite" />
+
+        <!-- Yorum yapma ikonu -->
+        <ImageButton
+            android:id="@+id/button_comment"
+            android:layout_width="50dp"
+            android:layout_marginLeft="-5dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:src="@drawable/ic_chat" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View likes"
+        android:layout_marginLeft="8dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginTop="-10dp"
+            android:id="@+id/post_username2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:hint="name"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold"
+            android:paddingRight="8dp"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:layout_marginTop="-10dp"
+            android:id="@+id/post_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_marginLeft="-8dp"
+            android:paddingRight="8dp"
+            android:hint="Description"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View all 20 comments"
+        android:layout_marginLeft="8dp"
+        />
+
+
+
+</LinearLayout>

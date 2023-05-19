@@ -11,7 +11,7 @@
         android:id="@+id/posts_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="48"
+
         android:textSize="15sp"
         android:textStyle="bold"
         android:layout_alignRight="@+id/posts_name"
@@ -34,21 +34,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_alignStart="@+id/following"
+        android:layout_alignStart="@+id/following_number"
         android:textAlignment="center"
-        android:id="@+id/followers_number"
-        android:text="290"
+        android:id="@+id/following"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:layout_toStartOf="@+id/following"
+        android:layout_toStartOf="@+id/following_number"
         android:textColor="@color/black"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/following"
-        android:layout_below="@+id/followers_number"
+        android:id="@+id/following_number"
+        android:layout_below="@+id/following"
         android:text="Following"
 
         android:layout_alignParentRight="true"
@@ -60,7 +59,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/followers_number"
+        android:layout_below="@+id/following"
         android:text="Followers"
         android:layout_centerHorizontal="true"
         android:textColor="@color/black"
@@ -70,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="100"
+        android:id="@+id/followers"
         android:textAlignment="center"
         android:textSize="15sp"
         android:textStyle="bold"
