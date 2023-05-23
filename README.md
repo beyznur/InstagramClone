@@ -1,7 +1,7 @@
 # InstagramClone
 This project is a mobile application developed in Android Studio using the Java programming language. The aim of the project is to mimic the core features of Instagram.
 
-Features:
+Features(New additions will be made to the project)
 - User Login and Registration: Users can sign up for the application and log in with their existing accounts.
 - Photo Sharing: Users can upload photos within the application and add descriptions. Posts are displayed on the homepage after being filtered based on the users they follow.
 - Likes: Users can like other users' posts.
