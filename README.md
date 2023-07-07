@@ -19,7 +19,6 @@ Technologies:
 ![3](https://github.com/beyznur/InstagramClone/assets/111892780/30cb174f-e2e3-4b7d-81f6-7a8a7e5436fa)
 ![4](https://github.com/beyznur/InstagramClone/assets/111892780/ba456770-43f2-43d1-be3d-794d83a02a29)
 ![5](https://github.com/beyznur/InstagramClone/assets/111892780/db4ff840-1e0c-40b9-beab-a3a19c1c7bc5)
-![6](https://github.com/beyznur/InstagramClone/assets/111892780/29f9ad90-2a0d-426c-a938-90fe73e4d5e6)
 
 
 
